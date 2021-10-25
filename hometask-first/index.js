@@ -12,12 +12,12 @@ async function invokeAction({ action, id, name, email, phone }) {
       break;
 
     case "add":
-      // ... name email phone
+      await contacts.addContact(name, email, phone);
       break;
 
-    // case "remove":
-    //   // ... id
-    //   break;
+    case "remove":
+      await contacts.removeContact(id);
+      break;
 
     default:
       console.warn("\x1B[31m Unknown action type!");
@@ -26,5 +26,4 @@ async function invokeAction({ action, id, name, email, phone }) {
 
 invokeAction(argv);
 
-// contactsInterfase.listContacts();
 console.log(`Сервер запущен успешно`);
