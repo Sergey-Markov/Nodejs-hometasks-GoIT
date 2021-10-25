@@ -63,7 +63,6 @@ async function removeContact(contactId) {
     });
     const indexOfContact = contacts.indexOf(contact);
     contacts.splice(indexOfContact, 1);
-    console.log(contacts);
     await fs.writeFile(contactsPath, JSON.stringify(contacts));
     listContacts();
   } catch (error) {
