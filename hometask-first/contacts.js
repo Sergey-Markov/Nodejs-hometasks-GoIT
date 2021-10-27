@@ -35,16 +35,15 @@ async function getContactById(contactId) {
 async function addContact(name, email, phone) {
   const newContact = {
     id: crypto.randomUUID(),
-    name: `${name}`,
-    email: `${email}`,
-    phone: `${phone}`,
+    name,
+    email,
+    phone,
   };
-  const newArr = [];
+
   try {
     const contacts = await getContacts();
     contacts.push(newContact);
-    newArr.push(...contacts);
-    const dataToJSON = JSON.stringify(newArr);
+    const dataToJSON = JSON.stringify(contacts);
     await fs.writeFile(contactsPath, dataToJSON, (err) => {
       if (err) throw err;
     });
