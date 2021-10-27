@@ -35,15 +35,16 @@ async function getContactById(contactId) {
 async function addContact(name, email, phone) {
   const newContact = {
     id: crypto.randomUUID(),
-    name,
-    email,
-    phone,
+    name: `${name}`,
+    email: `${email}`,
+    phone: `${phone}`,
   };
-
+  const newArr = [];
   try {
     const contacts = await getContacts();
     contacts.push(newContact);
-    const dataToJSON = JSON.stringify(contacts);
+    newArr.push(...contacts);
+    const dataToJSON = JSON.stringify(newArr);
     await fs.writeFile(contactsPath, dataToJSON, (err) => {
       if (err) throw err;
     });
@@ -62,6 +63,7 @@ async function removeContact(contactId) {
     });
     const indexOfContact = contacts.indexOf(contact);
     contacts.splice(indexOfContact, 1);
+    console.log(contacts);
     await fs.writeFile(contactsPath, JSON.stringify(contacts));
     listContacts();
   } catch (error) {

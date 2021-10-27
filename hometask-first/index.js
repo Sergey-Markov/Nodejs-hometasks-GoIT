@@ -26,4 +26,4 @@ async function invokeAction({ action, id, name, email, phone }) {
 
 invokeAction(argv);
 
-console.log(`The server is started successful`);
+console.log(`Сервер запущен успешно`);
